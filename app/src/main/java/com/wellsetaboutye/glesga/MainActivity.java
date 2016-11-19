@@ -8,6 +8,7 @@ import android.util.Log;
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
 import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         setContentView(R.layout.activity_main);
         kevinBeaconManager = BeaconManager.getInstanceForApplication(this);
         kevinBeaconManager.bind(this);
+        kevinBeaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
     }
 
     @Override
@@ -43,8 +45,9 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             public void didRangeBeaconsInRegion(Collection<Beacon> collection, Region region) {
                 long time = System.nanoTime();
                 Log.i(TAG, "working seriously " + collection.size());
-                for (Beacon b : collection)
-                    Log.i(TAG, time + " " + b.getServiceUuid());
+                for (Beacon b : collection) {
+                    Log.i(TAG, time + " " + b.getManufacturer() + b.getBluetoothName() + b.getParserIdentifier());
+                }
             }
         });
 
