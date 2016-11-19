@@ -82,6 +82,6 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     }
 
     private void speakTheTruth() {
-        tts.speak("Hi Alice, How are you? I hope you’re well. Thanks for your last e-mail. This time I’m writing to tell you about my family. My mother’s name is Amparo and my father’s name is Juan. My mother is 45 years old and my father is 55. My mother is a doctor and my father is a dancer. I love them both very much. I have a horrible little brother and no sisters. His name is Fernando. He goes to the same school as me. He is 8 years old. He loves playing football, video games and annoying me! I like playing basketball and going out with my friends. I don’t like school because my teacher is always angry. We have one dog called Bobbi. He is always happy. Well, that’s all for now. I hope to hear from you soon. Love, María xxxxxx", TextToSpeech.QUEUE_FLUSH, null);
+        tts.speak("In auditorium. Stage near right. Chairs directly ahead following semi-circular shape of room. Fire exit far right past stage.", TextToSpeech.QUEUE_FLUSH, null);
     }
 }
