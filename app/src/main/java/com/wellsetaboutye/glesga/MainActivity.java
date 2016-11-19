@@ -6,6 +6,7 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     private BeaconManager kevinBeaconManager;
     private Beacon tracked = null;
     private Vibrator vibrator;
+    private TextView distanceTextView = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         kevinBeaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24"));
 
         vibrator = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+
+
     }
 
     @Override
@@ -62,7 +66,11 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                 }
                 if (tracked != null) {
                     Log.i(TAG, "tracked @ " + tracked.getDistance());
-                    vibrator.vibrate((long) (tracked.getDistance() > 1 ? 1000 / tracked.getDistance() : 1000));
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            ((TextView) findViewById(R.id.distanceTextView)).setText(String.format("%.2f", tracked.getDistance()));
+                        }
+                    });
                 }
             }
         });
