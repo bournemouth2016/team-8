@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                         if (b.getBluetoothName().equals(BEACON_NAME)) {
                             seenBeacon = true;
                             speakTheTruth();
+                            break;
                         }
                     }
                 }
