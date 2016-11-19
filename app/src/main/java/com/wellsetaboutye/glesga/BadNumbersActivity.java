@@ -16,7 +16,7 @@ import org.altbeacon.beacon.Region;
 
 import java.util.Collection;
 
-public class MainActivity extends AppCompatActivity implements BeaconConsumer {
+public class BadNumbersActivity extends AppCompatActivity implements BeaconConsumer {
 
     private static final String BEACON_NAME = "MiniBeacon_05440";
 
